@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+/*Aside area*/
+.wrapper .aside_container{
+    width: 25%;
+    border-right: 2px solid lightgray;
+    padding: 10px;
+}
+.wrapper .aside_container .note_aside {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.wrapper .aside_container .note_aside h3 {
+    margin: 5px 0px;
+}
+.wrapper .aside_container .note_aside .note_date {
+    align-self: flex-end;
+    font-size: 15px;
+    color: lightgray;
+    margin-top: 5px;
+}
+/*Main container*/
+.wrapper .main_container {
+    padding: 20px;
+    width: 75%;
+}
+.wrapper .main_container h1 {
+    letter-spacing: 3px;
+}
+.wrapper .main_container textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.wrapper .main_container textarea:focus {
+    outline: none;
+}
+.wrapper .main_container textarea::placeholder {
+    font-size: 18px;
+    padding: 10px 0px;
+}
+/*Button*/
+.aside_container .add_btn {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: lightseagreen;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+}
