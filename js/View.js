@@ -45,7 +45,10 @@ export default class View {
       const updatedBody = inputBody.value.trim();
       this.onNoteEdit(updatedTitle, updatedBody);
     });
-}
+
+    //Po difoltu da glavni ispis bude nevidljiv kada se ucita stranica
+    this.updateNotePreviewVisibility(false);
+  }
   //Side bar list items
   _createListItemHTML(id, title, body, updated) {
     const max_body_length = 60;
@@ -57,22 +60,59 @@ export default class View {
             ${body.substring(0, max_body_length)}
             ${body.length > max_body_length ? "..." : ""}
             </p>
-            <p class="note_date">${updated.toLocaleString(undefined, {dateStyle: "full", timeStyle: "short"})}</p>
+            <p class="note_date">${updated.toLocaleString(undefined, {
+              dateStyle: "full",
+              timeStyle: "short",
+            })}</p>
         </div>
 
         `;
+  }
+
+  updateNoteList(notes) {
+    const notesListContainer = this.root.querySelector(".note_aside");
+
+    //Prvo sto radimo je da praznimo kontejner od list itema
+    notesListContainer.innerHTML = "";
+    for (const note of notes) {
+      const html = this._createListItemHTML(
+        note.id,
+        note.title,
+        note.body,
+        new Date(note.updated)
+      );
+
+      notesListContainer.insertAdjacentHTML("beforeend", html);
     }
 
-    updateNoteList(notes) {
-        const notesListContainer = this.root.querySelector(".note_aside");
-
-        //Prvo sto radimo je da praznimo kontejner od list itema
-        notesListContainer.innerHTML = "";
-        for (const note of notes) {
-            const html = this._createListItemHTML(note.id, note.title, note.body, new Date(note.updated))
-
-            notesListContainer.insertAdjacentHTML("beforeend", html);
+    //Add, select/delete events for each list item
+    notesListContainer.querySelectorAll(".note").forEach((noteListItem) => {
+      noteListItem.addEventListener("click", () => {
+        this.onNoteSelect(noteListItem.dataset.noteId);
+      });
+      noteListItem.addEventListener("dblclick", () => {
+        const doDelete = confirm("Are you sure you want to delete this note?");
+        if (doDelete) {
+          this.onNoteDelete(noteListItem.dataset.noteId);
         }
+      });
+    });
+  }
 
-    }
+  //Na klik aside item ispisujemo u main_container njegovu vrednost 
+  //U isto vreme dodajemo klasu ya boldovanje na aktivan item
+  updateActiveNote(note) {
+    this.root.querySelector(".note_title").value = note.title;
+    this.root.querySelector(".note_body").value = note.body;
+
+    this.root.querySelectorAll("note").forEach(noteListItem => {
+      noteListItem.classList.remove("note--selected");
+    })
+    this.root.querySelector(`.note[data-note-id='${note.id}']`).classList.add("note--selected");
+  }
+
+  //Inicijalno sakrivamo sadrzaj u glavnom kontejneru sve dok ne kliknemo na neki item
+  updateNotePreviewVisibility(visible) {
+    this.root.querySelector(".main_container").style.visibility = visible ? "visible" : "hidden";
+  }
 }

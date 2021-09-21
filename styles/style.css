@@ -18,19 +18,24 @@
 .wrapper .aside_container .note_aside {
     display: flex;
     flex-direction: column;
-    border: 2px solid lightgray;
-    border-radius: 6px;
-    margin-bottom: 10px;
     padding: 5px;
 }
-.wrapper .aside_container .note_aside h3 {
-    margin: 5px 0px;
+.note {
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.wrapper .aside_container .note_aside .note_title_aside {
+    margin: 7px 0px;
+}
+.wrapper .aside_container .note_aside .note_text_content {
+    margin: 7px 0px;
 }
 .wrapper .aside_container .note_aside .note_date {
-    align-self: flex-end;
     font-size: 15px;
-    color: lightgray;
+    color: gray;
     margin-top: 5px;
+    font-style: italic;
 }
 /*Main container*/
 .wrapper .main_container {
@@ -68,4 +73,10 @@
     border-radius: 6px;
     cursor: pointer;
     color: white;
+}
+
+/*Klasa koja se dodaje selectovanim itemima*/
+.note--selected {
+    background-color: lightgray;
+    font-weight: bold;
 }
