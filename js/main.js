@@ -14,3 +14,5 @@ const view = new View(app, {
         console.log(newBody);
     }
 });
+
+view.updateNoteList(NotesAPI.getAllNotes());

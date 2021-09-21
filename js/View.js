@@ -1,5 +1,5 @@
 export default class View {
-    //Kreiranje konstruktora 
+  //Kreiranje konstruktora
   constructor(
     root,
     { onNoteSelect, onNoteAdd, onNoteEdit, onNoteDelete } = {}
@@ -14,11 +14,7 @@ export default class View {
             <div class="aside_container">
                 <button class="add_btn">Add new note</button>
                 <div class="note_aside">
-                    <div class="note">
-                        <h3 class="note_title_aside">This is first note</h3>
-                        <p class="note_text_content">This is text of the first note...</p>
-                        <p class="note_date">September 18, 8:34pm</p>
-                    </div>
+                    
                 </div>
             </div>
             <div class="main_container">
@@ -33,21 +29,50 @@ export default class View {
 
     //Dogadjaj na dugme "Add note"
     btnAddNote.addEventListener("click", () => {
-        this.onNoteAdd();
-    })
+      this.onNoteAdd();
+    });
 
     //Blur dogadjaj za title i body
     inputTitle.addEventListener("blur", () => {
-        const updatedTitle = inputTitle.value.trim();
-        const updatedBody = inputBody.value.trim();
-        this.onNoteEdit(updatedTitle, updatedBody);
+      const updatedTitle = inputTitle.value.trim();
+      const updatedBody = inputBody.value.trim();
+      this.onNoteEdit(updatedTitle, updatedBody);
     });
-    
-    //Blur dogadjaj za title i body 
+
+    //Blur dogadjaj za title i body
     inputBody.addEventListener("blur", () => {
-        const updatedTitle = inputTitle.value.trim();
-        const updatedBody = inputBody.value.trim();
-        this.onNoteEdit(updatedTitle, updatedBody);
+      const updatedTitle = inputTitle.value.trim();
+      const updatedBody = inputBody.value.trim();
+      this.onNoteEdit(updatedTitle, updatedBody);
     });
-  }
+}
+  //Side bar list items
+  _createListItemHTML(id, title, body, updated) {
+    const max_body_length = 60;
+
+    return `
+        <div class="note" data-note-id="${id}">
+            <h3 class="note_title_aside">${title}</h3>
+            <p class="note_text_content">
+            ${body.substring(0, max_body_length)}
+            ${body.length > max_body_length ? "..." : ""}
+            </p>
+            <p class="note_date">${updated.toLocaleString(undefined, {dateStyle: "full", timeStyle: "short"})}</p>
+        </div>
+
+        `;
+    }
+
+    updateNoteList(notes) {
+        const notesListContainer = this.root.querySelector(".note_aside");
+
+        //Prvo sto radimo je da praznimo kontejner od list itema
+        notesListContainer.innerHTML = "";
+        for (const note of notes) {
+            const html = this._createListItemHTML(note.id, note.title, note.body, new Date(note.updated))
+
+            notesListContainer.insertAdjacentHTML("beforeend", html);
+        }
+
+    }
 }
