@@ -105,7 +105,7 @@ export default class View {
     this.root.querySelector(".note_title").value = note.title;
     this.root.querySelector(".note_body").value = note.body;
 
-    this.root.querySelectorAll("note").forEach(noteListItem => {
+    this.root.querySelectorAll(".note").forEach(noteListItem => {
       noteListItem.classList.remove("note--selected");
     })
     this.root.querySelector(`.note[data-note-id='${note.id}']`).classList.add("note--selected");
