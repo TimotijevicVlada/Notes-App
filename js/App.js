@@ -34,6 +34,38 @@ export default class App {
     }
 
 
-
-   
+    //Donja crta oznacava private method 
+    //Handleri za dogadjaje
+    _handlers() {
+        return {
+            //Kada selektujemo aside note
+            onNoteSelect: noteId => {
+                const selectedNote = this.notes.find(note => note.id == noteId);
+                this._setActiveNote(selectedNote);
+            },
+            //Kada dodajemo novi note 
+            onNoteAdd: () => {
+                const newNote = {
+                    title: "New Note..",
+                    body: "New body.."
+                }
+                NotesApi.saveNote(newNote);
+                this._refreshNotes();
+            },
+            //Kada editujemo postojeci note
+            onNoteEdit: (title, body) => {
+                NotesApi.saveNote({
+                    id: this.activeNote.id,
+                    title: title,
+                    body: body
+                })
+                this._refreshNotes();
+            },
+            //Kada deletujemo stari note
+            onNoteDelete: (noteId) => {
+                NotesApi.deleteNote(noteId);
+                this._refreshNotes();
+            }
+        };
+    }
 }
