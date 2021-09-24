@@ -12,6 +12,9 @@ export default class View {
     //Ovo je HTML koji je izmenjiv pomocu JS
     this.root.innerHTML = `
             <div class="aside_container">
+                <div class="exit">
+                  <i class="fas fa-times"></i>
+                </div>
                 <button class="add_btn">Add new note</button>
                 <div class="note_aside">
                     

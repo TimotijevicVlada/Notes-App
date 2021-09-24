@@ -4,16 +4,50 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/*Bar-menu*/
+.fa-bars {
+    display: none;
+    font-size: 20px;
+    padding: 5px 20px;
+}
+.fa-bars:hover {
+    color: lightseagreen;
+}
+
+/*Header*/
+.header {
+    border-bottom: 2px solid lightgray;
+}
+.header h1 {
+    font-weight: 200;
+    text-align: center;
+    padding: 10px 0px;
+    letter-spacing: 3px;
+    color: lightseagreen;
+}
+.exit {
+    display: flex;
+    justify-content: flex-end;
+}
+.fa-times {
+    display: none;
+    padding: 7px;
+    font-size: 20px;
+}
+
+/*Wrapper*/
 .wrapper {
     width: 100%;
     min-height: 100vh;
     display: flex;
 }
 /*Aside area*/
-.wrapper .aside_container{
+.wrapper .aside_container {
     width: 25%;
     border-right: 2px solid lightgray;
     padding: 10px;
+    background-color: white;
 }
 .wrapper .aside_container .note_aside {
     display: flex;
@@ -37,6 +71,7 @@
     margin-top: 5px;
     font-style: italic;
 }
+
 /*Main container*/
 .wrapper .main_container {
     padding: 20px;
@@ -62,6 +97,7 @@
 .wrapper .main_container textarea::placeholder {
     font-size: 20px;
 }
+
 /*Button*/
 .aside_container .add_btn {
     width: 100%;
@@ -79,4 +115,9 @@
 .note--selected {
     background-color: lightgray;
     font-weight: bold;
+}
+
+/*Klasa koja se dodaje za side menu*/
+.view_aside {
+    left: 0%;
 }

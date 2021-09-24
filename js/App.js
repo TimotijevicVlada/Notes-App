@@ -24,7 +24,6 @@ export default class App {
         this.notes = notes;
         this.view.updateNoteList(notes);
         this.view.updateNotePreviewVisibility(notes.length > 0);
-
     }
 
     //Kada hocemo da postavimo aktivan note

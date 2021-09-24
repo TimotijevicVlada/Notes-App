@@ -1,0 +1,25 @@
+@media screen and (max-width: 600px) {
+    .fa-bars {
+        display: block;
+    }
+    .fa-times {
+        display: block;
+    }
+    .wrapper .aside_container {
+        width: 100%;
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        transition: all 0.4s ease-in-out;
+    }
+    .header h1 {
+        letter-spacing: 1px;
+        font-size: 20px;
+    }
+    .wrapper .main_container {
+        width: 100%;
+    }
+    .wrapper .main_container .note_title {
+        font-size: 25px;
+    }
+}
